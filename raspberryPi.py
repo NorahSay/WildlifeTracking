@@ -1,3 +1,11 @@
+'''(First time PC setup)
+    Run in command prompt:  pip install pyrtlsdr[lib]
+
+    Description:
+    Samples radio signals, calculates their average power, and transmits 
+    data over a serial connection to XBee Transmitter via USB connection
+'''
+
 import serial,time,sys
 from rtlsdr import RtlSdr
 from numpy import *
