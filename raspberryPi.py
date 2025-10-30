@@ -27,11 +27,13 @@ try:
             log = 10*log10(var(samples))
             array = array + [log]
         avg = average(array[0:n])
-        # print(f"Avg: {avg:.3f}")
-        
+        # calib_avg = round(-49.4 + 2.33*avg + 0.0822*avg**2+0.00142*avg**3) # Calibrated value
+        calib_avg = round(1.05*avg - 54.4)
+
         message = f"{avg:.2f}"
-        ser.write(message.encode('utf-8'))
-        print(f"send: {message}")
+        calib_msg = f"{calib_avg:.0f}"
+        ser.write(calib_msg.encode('utf-8'))
+        print(f"Read from SDR: {message}, Sent to XBee: {calib_msg}")
         time.sleep(2)
 except KeyboardInterrupt:
     print("User interrupt")
